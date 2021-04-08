@@ -1,29 +1,34 @@
 # chess_download_games
-This script will download all your chess.com live games
+This script will download all your chess.com games (both live and daily).
 
 You'll need python3 and Firefox installed.
 
 1. Install selenium
-
-python3 -m pip install selenium
+   ```bash
+   python3 -m pip install selenium
+   ```
 
 2. Download, unpack, and move geckodriver (for linux):
+   ```bash
+   wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+   tar -xvzf geckodriver*
+   chmod +x geckodriver
+   sudo mv geckodriver /usr/local/bin/
+   ```
+   (Windows users, have a look [here](https://www.geeksforgeeks.org/how-to-install-selenium-in-python/).)
 
-wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+3. Run the script:
+   ```bash
+   python3 download_games.py
+   ```
 
-tar -xvzf geckodriver*
+By default, the games will be saved in the current working directory. 
+To specify a download directory, pass an argument to the script, e.g. 
+`python3 download_games.py ./games`. 
+By default, both live and daily games will be saved into a single `games.pgn` file;
+if you want to keep each separate, pass the `--separate-types` flag.
 
-chmod +x geckodriver
-
-sudo mv geckodriver /usr/local/bin/
-
-
-2.1. (Windows users, have a look here):
-
-https://www.geeksforgeeks.org/how-to-install-selenium-in-python/
-
-3. running the script:
-
-python3 download_games.py
-
-#your games will be saved in firefox's default download directory, unless you uncomment the lines 11 and 16 (linux users only), in which case a folder with the name 'games' will save the files.
+For more options and details on the command line interface, run
+```shell
+python3 download_games.py --help
+```
